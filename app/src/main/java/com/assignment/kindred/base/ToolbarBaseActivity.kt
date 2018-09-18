@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBar
+import android.support.v7.widget.Toolbar
 import android.widget.TextView
 import com.assignment.kindred.R
 import com.assignment.kindred.databinding.ActivityToolbarBaseBinding
@@ -65,5 +66,16 @@ abstract class ToolbarBaseActivity<VM : ViewModel, DB : ViewDataBinding> : ViewM
         supportActionBar?.setDisplayHomeAsUpEnabled(isUpButton)
         supportActionBar?.setHomeButtonEnabled(true)
         toolbarTitleTv?.text = toolbarTitle
+        if (isUpButton) {
+
+            val array = theme.obtainStyledAttributes(
+                    intArrayOf(android.R.attr.actionBarSize))
+            val actionBarSize = array.getDimensionPixelSize(0, -1)
+            array.recycle()
+
+            val layoutParams = toolbarTitleTv?.layoutParams as Toolbar.LayoutParams
+            layoutParams.marginEnd = actionBarSize
+            toolbarTitleTv?.layoutParams = layoutParams
+        }
     }
 }

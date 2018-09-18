@@ -1,6 +1,9 @@
 package com.assignment.kindred.network.retrofit.manager
 
+import com.assignment.kindred.base.BaseResponse
+import com.assignment.kindred.network.util.IResponsePublisher
 import com.assignment.kindred.util.RequestTypes
+import io.reactivex.annotations.NonNull
 
 interface IAPIManager {
 
@@ -10,5 +13,5 @@ interface IAPIManager {
                 locale: String,
                 currency: String,
                 categories: String,
-                clientId: String)
+                clientId: String, @NonNull publisher: IResponsePublisher<BaseResponse>)
 }

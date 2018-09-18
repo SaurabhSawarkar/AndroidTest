@@ -1,11 +1,14 @@
 package com.assignment.kindred.network.retrofit.manager
 
 import android.util.Log
+import com.assignment.kindred.base.BaseResponse
 import com.assignment.kindred.network.model.GamesResponse
 import com.assignment.kindred.network.retrofit.IEndPoints
 import com.assignment.kindred.network.retrofit.client.RetrofitClient
+import com.assignment.kindred.network.util.IResponsePublisher
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
@@ -42,7 +45,10 @@ class APIManager : IAPIManager {
         }
     }
 
-    override fun getGame(requestType: Int, jurisdiction: String, brand: String, deviceGroup: String, locale: String, currency: String, categories: String, clientId: String) {
+    override fun getGame(requestType: Int, jurisdiction: String, brand: String, deviceGroup: String,
+                         locale: String, currency: String, categories: String, clientId: String,
+                         @NonNull publisher: IResponsePublisher<BaseResponse>) {
+
         val api = retrofitClient.create(IEndPoints.IGamesEndPoint::class.java)
         val observable = api.getGames(jurisdiction, brand, deviceGroup, locale, currency, categories, clientId)
         observable.subscribeOn(Schedulers.io())
@@ -50,14 +56,16 @@ class APIManager : IAPIManager {
                 .subscribe(object : SingleObserver<GamesResponse> {
                     override fun onSuccess(t: GamesResponse) {
                         Log.d(TAG, "Success: ")
+                        publisher.onSuccess(requestType, t)
                     }
 
                     override fun onSubscribe(d: Disposable) {
-
+                        publisher.onSubscribe(requestType, d)
                     }
 
                     override fun onError(e: Throwable) {
                         Log.d(TAG, "Error: " + e.message)
+                        publisher.onError(requestType, e)
                     }
                 })
     }
