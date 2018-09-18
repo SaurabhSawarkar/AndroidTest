@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
  * Blue print for response publisher.
  */
 
-interface IResponsePublisher<T : BaseResponse> {
+public interface IResponsePublisher<T : BaseResponse> {
 
 
     fun onSuccess(@RequestTypes.Interface requestType: Int, responseBean: T?)

@@ -9,12 +9,11 @@ import com.assignment.kindred.network.retrofit.client.RetrofitClient
 import com.assignment.kindred.network.util.IResponsePublisher
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class APIManager : IAPIManager {
+open class APIManager : IAPIManager {
 
     private val TAG = "APIManager"
 
@@ -48,7 +47,7 @@ class APIManager : IAPIManager {
 
     override fun getGame(requestType: Int, jurisdiction: String, brand: String, deviceGroup: String,
                          locale: String, currency: String, categories: Categories, clientId: String,
-                         @NonNull publisher: IResponsePublisher<BaseResponse>) {
+                         publisher: IResponsePublisher<BaseResponse>) {
 
         val api = retrofitClient.create(IEndPoints.IGamesEndPoint::class.java)
         val observable = api.getGames(jurisdiction, brand, deviceGroup, locale, currency, categories, clientId)

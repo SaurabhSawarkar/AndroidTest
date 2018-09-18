@@ -1,6 +1,6 @@
 package com.assignment.kindred.network.model
 
-class Categories(list: List<String>?) {
+public open class Categories(list: List<String>?) {
 
     private val categoriesList = list
 
