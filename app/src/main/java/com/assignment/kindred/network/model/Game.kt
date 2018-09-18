@@ -1,23 +1,25 @@
 package com.assignment.kindred.network.model
 
+import java.io.Serializable
+
 data class Game(
 
         var nodeName: String? = null,
 
-        val tags: List<String>? = null,
+        var tags: List<String>? = null,
 
-        val playUrl: String? = null,
+        var playUrl: String? = null,
 
-        val backgroundImageUrl: String? = null,
+        var backgroundImageUrl: String? = null,
 
-        val imageUrl: String? = null,
+        var imageUrl: String? = null,
 
-        val gameId: String? = null,
+        var gameId: String? = null,
 
-        val licenses: List<String>? = null,
+        var licenses: List<String>? = null,
 
-        val vendorId: String? = null,
+        var vendorId: String? = null,
 
-        val gameName: String? = null,
+        var gameName: String? = null,
 
-        val launchLocale: String? = null)
+        var launchLocale: String? = null) : Serializable
