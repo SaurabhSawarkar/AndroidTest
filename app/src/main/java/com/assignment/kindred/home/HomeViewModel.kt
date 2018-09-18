@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.assignment.kindred.base.BaseResponse
 import com.assignment.kindred.extension.lazyN
+import com.assignment.kindred.network.model.Categories
 import com.assignment.kindred.network.model.Game
 import com.assignment.kindred.network.model.GamesResponse
 import com.assignment.kindred.network.retrofit.manager.APIManager
@@ -19,8 +20,12 @@ class HomeViewModel : ViewModel() {
     private val userSubscribe by lazyN { MutableLiveData<Disposable>() }
 
     fun getGames() {
+        val list = ArrayList<String>()
+        list.add("casino")
+        list.add("softgames")
+        val category = Categories(list)
         APIManager.getInstance().getGame(RequestTypes.GET_GAMES, "UK", "unibet", "mobilephone", "en_GB",
-                "GBP", "casino", "casinoapp", responsePublisher)
+                "GBP", category, "casinoapp", responsePublisher)
     }
 
 

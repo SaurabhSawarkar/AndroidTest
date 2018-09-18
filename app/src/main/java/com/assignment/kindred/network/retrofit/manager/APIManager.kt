@@ -2,6 +2,7 @@ package com.assignment.kindred.network.retrofit.manager
 
 import android.util.Log
 import com.assignment.kindred.base.BaseResponse
+import com.assignment.kindred.network.model.Categories
 import com.assignment.kindred.network.model.GamesResponse
 import com.assignment.kindred.network.retrofit.IEndPoints
 import com.assignment.kindred.network.retrofit.client.RetrofitClient
@@ -46,7 +47,7 @@ class APIManager : IAPIManager {
     }
 
     override fun getGame(requestType: Int, jurisdiction: String, brand: String, deviceGroup: String,
-                         locale: String, currency: String, categories: String, clientId: String,
+                         locale: String, currency: String, categories: Categories, clientId: String,
                          @NonNull publisher: IResponsePublisher<BaseResponse>) {
 
         val api = retrofitClient.create(IEndPoints.IGamesEndPoint::class.java)

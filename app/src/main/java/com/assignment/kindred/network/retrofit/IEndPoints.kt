@@ -1,5 +1,6 @@
 package com.assignment.kindred.network.retrofit
 
+import com.assignment.kindred.network.model.Categories
 import com.assignment.kindred.network.model.GamesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface IEndPoints {
                      @Query("deviceGroup") deviceGroup: String,
                      @Query("locale") locale: String,
                      @Query("currency") currency: String,
-                     @Query("categories") categories: String,
+                     @Query("categories") categories: Categories,
                      @Query("clientId") clientId: String): Single<GamesResponse>
     }
 }
