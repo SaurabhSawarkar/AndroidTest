@@ -18,5 +18,5 @@ object RequestTypes {
     @IntDef(NONE,
             GET_GAMES)
 
-    annotation class Interface
+    public annotation class Interface
 }

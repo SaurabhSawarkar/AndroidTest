@@ -28,6 +28,11 @@ android {
     dataBinding {
         enabled = true
     }
+    //For test cases
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 dependencies {
@@ -63,4 +68,8 @@ dependencies {
 
     // GSON body parser
     implementation 'com.google.code.gson:gson:2.8.2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1"
+    /*testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:3.0.0"*/
 }
